@@ -1,6 +1,6 @@
 # Task #EX1: Templates  
 **course:** Programación III  
-**unit:** 1  
+**unit:** 2 
 **cmake project:** prog3_unit2_neuralnetwork_v2025_01
 ## Indicaciones Específicas
 El tiempo límite para la evaluación es de 2 horas.

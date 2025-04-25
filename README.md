@@ -1,32 +1,32 @@
 # Task #EX1: Templates  
-**course:** Programaci√≥n III  
+**course:** ProgramaciÛn III  
 **unit:** 1  
 **cmake project:** prog3_unit2_neuralnetwork_v2025_01
-## Indicaciones Espec√≠ficas
-El tiempo l√≠mite para la evaluaci√≥n es de 2 horas.
+## Indicaciones EspecÌficas
+El tiempo lÌmite para la evaluaciÛn es de 2 horas.
 
-Cada pregunta deber√° ser respondida en un archivo fuente (.cpp) y cabecera (.h) correspondiente, en caso de `templates` solo incluir el archivo cabecera:
+Cada pregunta deber· ser respondida en un archivo fuente (.cpp) y cabecera (.h) correspondiente, en caso de `templates` solo incluir el archivo cabecera:
 
  - `neural_network.h`  
 
-Deber√°s subir estos archivos directamente a www.gradescope.com o se puede crear un .zip que contenga todos ellos y subirlo.
+Deber·s subir estos archivos directamente a www.gradescope.com o se puede crear un .zip que contenga todos ellos y subirlo.
 
 ## Question: templates (20 points)
 
 ## Objetivo
-Dise√±ar e implementar un mini-framework en C++ que permita construir redes neuronales gen√©ricas y modulares a partir de capas definidas por el usuario, usando:
+DiseÒar e implementar un mini-framework en C++ que permita construir redes neuronales genÈricas y modulares a partir de capas definidas por el usuario, usando:
 
 - **variadic templates** y **template-template parameters**
-- **Jerarqu√≠a polim√≥rfica gen√©rica** (`Layer<T>`)
-- **Memoria din√°mica segura** (`std::unique_ptr`)
-- Operaciones num√©ricas b√°sicas y **Softmax**
+- **JerarquÌa polimÛrfica genÈrica** (`Layer<T>`)
+- **Memoria din·mica segura** (`std::unique_ptr`)
+- Operaciones numÈricas b·sicas y **Softmax**
 
 ---
 
 ## Requisitos
 
 1. **Clase base**  
-   Define la interfaz polim√≥rfica gen√©rica:
+   Define la interfaz polimÛrfica genÈrica:
    ```cpp
    template<typename T>
    class Layer {
@@ -40,8 +40,8 @@ Dise√±ar e implementar un mini-framework en C++ que permita construir redes neur
    Implementa **cuatro** clases que hereden de `Layer<T>`:
 
    - **`Dense<T>`**
-      - Un √∫nico peso (`weight`) y un √∫nico sesgo (`bias`).
-      - La dimensi√≥n de entrada = dimensi√≥n de salida = `input.size()`.
+      - Un ˙nico peso (`weight`) y un ˙nico sesgo (`bias`).
+      - La dimensiÛn de entrada = dimensiÛn de salida = `input.size()`.
       - `forward(in)` produce:
         ```cpp
         for (size_t i = 0; i < in.size(); ++i)
@@ -68,10 +68,10 @@ Dise√±ar e implementar un mini-framework en C++ que permita construir redes neur
          out[i] = e[i] / sum;
      ```
 
-3. **Determinaci√≥n de la plantilla `NeuralNetwork`**  
-   Aqu√≠ tienes algunos **casos de uso**. A partir de ellos, **deduce**:
+3. **DeterminaciÛn de la plantilla `NeuralNetwork`**  
+   AquÌ tienes algunos **casos de uso**. A partir de ellos, **deduce**:
    - La firma de la plantilla (`template<...> class NeuralNetwork`).
-   - El **orden** y n√∫mero de **par√°metros** que debe recibir el constructor.
+   - El **orden** y n˙mero de **par·metros** que debe recibir el constructor.
 
    ---
    ### Caso 1: Red simple Dense -> Softmax
@@ -91,7 +91,7 @@ Dise√±ar e implementar un mini-framework en C++ que permita construir redes neur
    ---
    ### Caso 2: Dense -> ReLU -> Dense -> Softmax
    ```cpp
-   // Dense<double>(0.2, 0.0) -> ReLU<double>() -> Dense<double>(0.1, 0.1) -> Softmax<double>()
+   // Dense<double>(0.2, 0.0) -> ReLU<double>() -> Dense<double>(0.2, 0.0) -> Softmax<double>()
    NeuralNetwork<double, Dense, ReLU, Dense, Softmax> model2(
        0.2,   // Dense: weight
        0.0    // Dense: bias
@@ -106,7 +106,7 @@ Dise√±ar e implementar un mini-framework en C++ que permita construir redes neur
    ---
    ### Caso 3: Dense -> Dropout -> ReLU -> Dense -> Softmax
    ```cpp
-   // Dense<float>(0.05, -0.02) -> Dropout<float>() -> ReLU<float>() -> Dense<float>(0.03, 0.0) -> Softmax<float>()
+   // Dense<float>(0.05, -0.02) -> Dropout<float>() -> ReLU<float>() -> Dense<float>(0.05, -0.02) -> Softmax<float>()
    NeuralNetwork<float, Dense, Dropout, ReLU, Dense, Softmax> model3(
        0.05f,    // Dense: weight
       -0.02f     // Dense: bias
@@ -115,5 +115,5 @@ Dise√±ar e implementar un mini-framework en C++ que permita construir redes neur
 
    std::vector<float> in3 = {1,2,3,4,5,6};
    auto out3 = model3.predict(in3);
-   // tras Dropout: tama√±o 3 -> Softmax: tama√±o 3, sum==1.0f
+   // tras Dropout: tamaÒo 3 -> Softmax: tamaÒo 3, sum==1.0f
    ```

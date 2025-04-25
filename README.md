@@ -1,32 +1,32 @@
 # Task #EX1: Templates  
-**course:** Programación III  
+**course:** ProgramaciÃ³n III  
 **unit:** 1  
 **cmake project:** prog3_unit2_neuralnetwork_v2025_01
-## Indicaciones Específicas
-El tiempo límite para la evaluación es de 2 horas.
+## Indicaciones EspecÃ­ficas
+El tiempo lÃ­mite para la evaluaciÃ³n es de 2 horas.
 
-Cada pregunta deberá ser respondida en un archivo fuente (.cpp) y cabecera (.h) correspondiente, en caso de `templates` solo incluir el archivo cabecera:
+Cada pregunta deberÃ¡ ser respondida en un archivo fuente (`.cpp`) y cabecera (`.h`) correspondiente, en caso de `templates` solo incluir el archivo cabecera (`.h`):
 
  - `neural_network.h`  
 
-Deberás subir estos archivos directamente a www.gradescope.com o se puede crear un .zip que contenga todos ellos y subirlo.
+DeberÃ¡s subir estos archivos directamente a www.gradescope.com o se puede crear un .zip que contenga todos ellos y subirlo.
 
 ## Question: templates (20 points)
 
 ## Objetivo
-Diseñar e implementar un mini-framework en C++ que permita construir redes neuronales genéricas y modulares a partir de capas definidas por el usuario, usando:
+DiseÃ±ar e implementar un mini-framework en C++ que permita construir redes neuronales genÃ©ricas y modulares a partir de capas definidas por el usuario, usando:
 
 - **variadic templates** y **template-template parameters**
-- **Jerarquía polimórfica genérica** (`Layer<T>`)
-- **Memoria dinámica segura** (`std::unique_ptr`)
-- Operaciones numéricas básicas y **Softmax**
+- **JerarquÃ­a polimÃ³rfica genÃ©rica** (`Layer<T>`)
+- **Memoria dinÃ¡mica segura** (`std::unique_ptr`)
+- Operaciones numÃ©ricas bÃ¡sicas y **Softmax**
 
 ---
 
 ## Requisitos
 
 1. **Clase base**  
-   Define la interfaz polimórfica genérica:
+   Define la interfaz polimÃ³rfica genÃ©rica:
    ```cpp
    template<typename T>
    class Layer {
@@ -40,8 +40,8 @@ Diseñar e implementar un mini-framework en C++ que permita construir redes neuro
    Implementa **cuatro** clases que hereden de `Layer<T>`:
 
    - **`Dense<T>`**
-      - Un único peso (`weight`) y un único sesgo (`bias`).
-      - La dimensión de entrada = dimensión de salida = `input.size()`.
+      - Un Ãºnico peso (`weight`) y un Ãºnico sesgo (`bias`).
+      - La dimensiÃ³n de entrada = dimensiÃ³n de salida = `input.size()`.
       - `forward(in)` produce:
         ```cpp
         for (size_t i = 0; i < in.size(); ++i)
@@ -68,10 +68,10 @@ Diseñar e implementar un mini-framework en C++ que permita construir redes neuro
          out[i] = e[i] / sum;
      ```
 
-3. **Determinación de la plantilla `NeuralNetwork`**  
-   Aquí tienes algunos **casos de uso**. A partir de ellos, **deduce**:
+3. **DeterminaciÃ³n de la plantilla `NeuralNetwork`**  
+   AquÃ­ tienes algunos **casos de uso**. A partir de ellos, **deduce**:
    - La firma de la plantilla (`template<...> class NeuralNetwork`).
-   - El **orden** y número de **parámetros** que debe recibir el constructor.
+   - El **orden** y nÃºmero de **parÃ¡metros** que debe recibir el constructor.
 
    ---
    ### Caso 1: Red simple Dense -> Softmax
@@ -115,5 +115,5 @@ Diseñar e implementar un mini-framework en C++ que permita construir redes neuro
 
    std::vector<float> in3 = {1,2,3,4,5,6};
    auto out3 = model3.predict(in3);
-   // tras Dropout: tamaño 3 -> Softmax: tamaño 3, sum==1.0f
+   // tras Dropout: tamaÃ±o 3 -> Softmax: tamaÃ±o 3, sum==1.0f
    ```
